@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
+    <title>
+        Home | EPR Dashboard
+    </title>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="../../assets/extra-libs/multicheck/multicheck.css">
+    <link href="../../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="../../assets/extra-libs/DataTables/DataTables-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="../../assets/extra-libs/DataTables/buttons.dataTables.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css" /><link href="../../dist/css/style.min.css" rel="stylesheet">
+    <link href="../../dist/css/custom.css" rel="stylesheet">
+    <link href="../../assets/extra-libs/monthpicker/MonthPicker.css" rel="stylesheet">
+    <link href="../../assets/extra-libs/monthpicker/jquery-ui.css" rel="stylesheet">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+
+<![endif]-->
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar" data-navbarbg="skin5">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                <div class="navbar-header" data-logobg="skin5">
+                    <!-- This is for the sidebar toggle which is visible on mobile only -->
+                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
+                    <!-- ============================================================== -->
+                    <!-- Logo -->
+                    <!-- ============================================================== -->
+                    <a class="navbar-brand" href="index.html">
+                        <!-- Logo icon -->
+                        <b class="logo-icon p-l-10">
+                        </b>
+                        <span class="logo-text">
+                             <!-- dark Logo text -->
+                             <img src="../../assets/images/logo-text.png" alt="homepage" class="light-logo" style="max-height: 50px"/>
+                            
+                        </span>
+                    </a>
+                    <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i class="ti-more"></i></a>
+                </div>
+                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+                    <ul class="navbar-nav float-left mr-auto">
+                        <li class="nav-item d-none d-md-block"><a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a></li>
+                    <ul class="navbar-nav float-right"><li class="nav-item search-box"><a href="https://hiskenya.org/" class="btn btn-default btn-sm">&larr; Back to DHIS</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar" data-sidebarbg="skin5">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav" class="p-t-30">
+                            <!-- County -->
+                            <li class="sidebar-item">
+                                <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">EPR </span></a>
+                                <ul aria-expanded="false" class="collapse  first-level">
+                                    <li class="sidebar-item active"> <a class="sidebar-link waves-effect active waves-dark sidebar-link" href="epr.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Epidemic Monitoring </span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="epr-subcounty.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">EPR Summary </span></a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb">
+                
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <div class="page-breadcrumb">
+                    <div class="row">
+                        <div class="col-12 d-flex no-block align-items-center">
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <h4 class="page-title m-t-10">
+                                    
+                                </h4>
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <small class="">Filter:</small>
+                                <div class="row">
+                                    <div class="col-md-11 col-sm-11 col-xs-11">
+                                        <div class="row">
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                <select class="form-control m-r-5" id="county-dropdown" name="county">                                                
+                                                </select>
+                                            </div>		
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                <select class="form-control m-r-5" id="region-dropdown" name="region">                                                
+                                                </select>
+                                            </div>											
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                <select class="form-control m-r-5" id="subcounty-dropdown" name="subcounty">                                                
+                                                </select> 
+                                            </div> 
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                <select class="form-control m-r-5" id="facility-dropdown" placeholder="Select Facility" name="facility">                                                
+                                                </select> 
+                                            </div> 
+                                            <!-- <div class="col-md-3 col-sm-3 col-xs-12">
+                                                <input type="text" placeholder="Period" class="form-control" id="period-dropdown" placeholder="Period"/> 
+                                            </div>  -->
+                                        </div>
+                                    </div> 
+                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                        <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)"><small>Clear filters</small></a>
+                                    </div>                                
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h4 class="titlelabel"></h4>
+                </div>
+                        <div class="card">
+                            <div class="card-body">
+								<h5 class="card-title ttitle sohtitle"></h5>
+                                <div class="sp_status row"></div>
+                                <div class="row">
+                                    <div class="loader-sp">
+                                        <div class="loader loader--style3" title="2">
+                                            <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                width="80px" height="80px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+                                                <path fill="#27a9e3" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+                                                <animateTransform attributeType="xml"
+                                                attributeName="transform"
+                                                type="rotate"
+                                                from="0 25 25"
+                                                to="360 25 25"
+                                                dur="0.6s"
+                                                repeatCount="indefinite"/>
+                                                </path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title"></h5>
+                                            <div class="t_four_state col-md-12"></div>                              
+                                            <div class="col-md-12 p-10"> 
+                                                <div class="loader-sp t_four">
+                                                    <div class="loader loader--style3" title="2">
+                                                        <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                            width="80px" height="80px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+                                                            <path fill="#27a9e3" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+                                                            <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"/>
+                                                            </path>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>      
+                                            <div class="col-md-12 t_four" style="background-color: #fff; border: 1px solid #fff; border-radius: 5px; min-height: 400px;">
+                                                <div id="eprvisual" class="t_four" style="min-width: 100%; max-width: 100vw; height: 500px; margin: 0 auto"></div>
+                                            </div>                          
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row spdata">
+                                    <div class="table-responsive">
+                                        <table id="epr_table" class="table table-condensed slimtable table-bordered spbox hidden">
+                                        <thead>
+											<tr>
+                                                <th><b>Week</b></th>
+                                                <th class="text-right"><b>2017</b></th>
+                                                <th class="text-right"><b>2018</b></th>
+                                                <th class="text-right"><b>2019</b></th>
+                                                <th class="text-right"><b>2020</b></th>
+                                                <th class="text-right"><b>2021</b></th>
+                                                <th class="text-right"><b>Alert treshold</b></th>
+                                                <th class="text-right"><b>Action threshold</b></th>
+                                                
+                                            </tr>                                              
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+
+            <footer class="footer text-center">
+                All Rights Reserved. Malaria Commodities Dashboard &copy; <script>document.write(new Date().getFullYear());</script>
+            </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../../dist/js/defaults.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="../../assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="../../assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="../../assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="../../assets/extra-libs/sparkline/sparkline.js"></script>
+    <!--Wave Effects -->
+    <script src="../../dist/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="../../dist/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="../../dist/js/custom.min.js"></script><script src="../../dist/js/custom.js"></script>
+    <!-- this page js -->
+    <script src="../../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
+    <script src="../../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
+    <script src="../../assets/extra-libs/DataTables/datatables.min.js"></script>
+        
+    <script src="../../assets/extra-libs/DataTables/dataTables.buttons.min.js"></script>
+    <script src="../../assets/extra-libs/DataTables/buttons.flash.min.js"></script>
+    <script src="../../assets/extra-libs/jszip/jszip.min.js"></script>
+    <script src="../../assets/extra-libs/pdfmake/pdfmake.min.js"></script>
+    <script src="../../assets/extra-libs/pdfmake/vfs_fonts.js"></script>
+    <script src="../../assets/extra-libs/DataTables/buttons.html5.min.js"></script>
+    <script src="../../assets/extra-libs/DataTables/buttons.print.min.js"></script>
+    	
+	<!-- *********** MonthPicker ************** -->
+    <script src="../../assets/extra-libs/monthpicker/jquery-migrate-3.0.1.min.js"></script>
+    <script src="../../assets/extra-libs/monthpicker/jquery.maskedinput.min.js"></script>
+    <script src="../../assets/extra-libs/monthpicker/jquery-ui.min.js"></script>
+    <script src="../../assets/extra-libs/monthpicker/MonthPicker.js"></script>
+    
+
+    <script>
+        var todayte = new Date().getDate();
+        if(parseFloat(todayte) < 15){
+            var mnthLessBy = -2
+        }else{
+            var mnthLessBy = -1
+        }
+        let twenty15 = `-${parseFloat(new Date().getFullYear()) - 2015}y`;
+        $('#period-dropdown').MonthPicker({ 
+            Button: false,
+           MinMonth: twenty15,
+            // MaxMonth: -1,
+            MaxMonth: mnthLessBy,
+            MinYear: 0,
+            MaxYear: 0,
+            OnAfterChooseMonth: function() {  
+                var sDate = $(this).val();
+                datePicked(sDate);
+            }
+        });        
+    </script>
+    <!-- *********** end MonthPicker ************** -->
+    <script>
+		$(document).ready(function() 
+		{
+            var dropdown = $('#county-dropdown');
+            var regiondown = $('#region-dropdown')
+			
+			var subcounty = $('#subcounty-dropdown');
+			
+            var facility = $('#facility-dropdown');
+			
+			// var perioddwn = $('#period-dropdown');
+
+			dropdown.empty();
+			subcounty.empty();
+			// perioddwn.empty();
+			facility.empty();
+
+            dropdown.append('<option selected="true" disabled>Select County</option>');
+            dropdown.append('<option value="HfVjCurKxh2">Kenya</option>');
+            regiondown.append('<option selected="true" disabled>Select Epidiomological zones</option>');
+            regiondown.append('<option value="X5y4kvPkPzP">Malaria EPZ Highland Epidemic Prone</option>');
+            regiondown.append('<option value="Nv5UWERIuLP">Malaria EPZ Seasonal Transmission Zone</option>');
+
+			if(myOU()=='HfVjCurKxh2'){dropdown.prop('selectedIndex', 0);}else{dropdown.prop('selectedIndex', 0)};
+			
+			facility.append('<option selected="true" disabled>Select Facility</option>');
+			facility.prop('selectedIndex', 0);
+			
+			subcounty.append('<option selected="true" disabled>Select Sub County</option>');
+            subcounty.prop('selectedIndex', 0);
+            $.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){			
+                var myou = myOU();
+                $.each(data.organisationUnits, function (key, entry) 
+                {				
+                    if(entry.parent.id==myou)
+                    {							
+                        subcounty.append($('<option></option>').attr('value', entry.id).text(entry.name));
+                    }				
+                })		 
+            });	
+			
+			// perioddwn.append('<option selected="true" disabled>Select Period</option>');
+			// perioddwn.prop('selectedIndex', 0);
+
+			//const url = 'https://api.myjson.com/bins/7xq2x';
+
+			//populate dropdown with list of counties
+			$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false', function (data) 
+			{
+				//console.log(data.organisationUnits);
+				$.each(data.organisationUnits, function (key, entry) 
+				{						
+					dropdown.append($('<option></option>').attr('value', entry.id).text(entry.name));			
+				})		 
+			});
+			
+			$("#county-dropdown").change(function() 
+			{  
+				regiondown.empty();
+				$('#facility-dropdown').empty();
+                facility.append('<option selected="true" disabled>Select Facility</option>');
+				facility.prop('selectedIndex', 0);
+				var countyid = $(this).val();
+				subcounty.append('<option selected="true" disabled>Select Sub County</option>');
+				subcounty.prop('selectedIndex', 0);
+                subcounty.append('<option value='+$(this).val()+'>All subcounties</option>');
+				
+				// Populate dropdown with list of sub counties
+				$.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data) 
+				{			
+					$.each(data.organisationUnits, function (key, entry) 
+					{				
+						if(entry.parent.id==countyid)
+						{
+							subcounty.append($('<option></option>').attr('value', entry.id).text(entry.name));
+						}				
+					})		 
+				});		
+			});
+            $("#region-dropdown").change(function() 
+			{  
+                dropdown.empty()
+                subcounty.empty();
+                $('#county-dropdown').empty();
+				var regionid = $(this).val();
+				facility.append('<option selected="true" disabled>Select Facility</option>');
+				facility.prop('selectedIndex', 0);
+				$.getJSON('https://hiskenya.org/api/organisationUnitGroups/'+regionid+'.json?fields=id,name,organisationUnits[id,name]?paging=false', function (data) {
+                    // console.log("Facilities-data ==> "+JSON.stringify(data));
+					$.each(data.organisationUnits, function (key, entry) {				
+						//if(entry.parent.id==subcountyid){
+							$('#subcounty-dropdown').append($('<option></option>').attr('value', entry.id).text(entry.name));
+						//}				
+					})
+				});
+			});
+            
+
+			$("#subcounty-dropdown").change(function() 
+			{  
+				$('#facility-dropdown').empty();
+				var subcountyid = $(this).val();
+				facility.append('<option selected="true" disabled>Select Facility</option>');
+				facility.prop('selectedIndex', 0);
+
+				$.getJSON('https://hiskenya.org/api/organisationUnits/'+subcountyid+'.json?filter=level:eq:5&fields=id,name,code&includeDescendants=true', function (data) {
+                    //console.log("Facilities-data ==> "+JSON.stringify(data));
+					$.each(data.organisationUnits, function (key, entry) {				
+						//if(entry.parent.id==subcountyid){
+							$('#facility-dropdown').append($('<option></option>').attr('value', entry.id).text(entry.name));
+						//}				
+					})
+				});
+			});
+		});
+	</script>
+			
+		
+	<script>      
+
+    
+	$(document).ready(function() 
+	{
+            // var ounit = 'HfVjCurKxh2'; //Kenya
+            // ounit = myOU(); //Kenya
+
+            //define the constants
+            var ounit = 'HfVjCurKxh2';
+            if( myOU() != 'HfVjCurKxh2' ){
+                ounit = myOU();
+            }
+			//define the constants
+            
+            // Populate dropdown with list of sub counties
+            $.getJSON('https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false', function (data){
+                $.each(data.organisationUnits, function (key, entry){
+                    if(entry.parent.id==ounit){		
+                        $('#subcounty-dropdown').append($('<option></option>').attr('value', entry.id).text(entry.name));
+                    }
+                })
+            });
+            $('#county-dropdown option[value="'+ounit+'"]').prop('selected', 'selected');
+
+            var currentyear = parseFloat(new Date().getFullYear())
+            var lastyear = parseFloat(new Date().getFullYear() - 1)
+            var previousyear = parseFloat(new Date().getFullYear()-2)
+            var threeyearsback = parseFloat(new Date().getFullYear()-3)
+            var fouryearsback = parseFloat(new Date().getFullYear()-4)
+            var ouid = 'st4v8xfqgJf';
+            
+            
+
+            // var url = 'https://json.link/UoNRTNuLmT.json';
+            // var rrurl = 'https://json.link/zShAsO7XPr.json'
+            // console.log(ouid)
+			
+           var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:gzxF71bqYP8&dimension=pe:'+currentyear+'W52;'+currentyear+'W51;'+currentyear+'W50;'+currentyear+'W49;'+currentyear+'W48;'+currentyear+'W47;'+currentyear+'W46;'+currentyear+'W45;'+currentyear+'W44;'+currentyear+'W43;'+currentyear+'W42;'+currentyear+'W41;'+currentyear+'W40;'+currentyear+'W39;'+currentyear+'W38;'+currentyear+'W37;'+currentyear+'W36;'+currentyear+'W35;'+currentyear+'W34;'+currentyear+'W33;'+currentyear+'W32;'+currentyear+'W31;'+currentyear+'W30;'+currentyear+'W29;'+currentyear+'W28;'+currentyear+'W27;'+currentyear+'W26;'+currentyear+'W25;'+currentyear+'W24;'+currentyear+'W23;'+currentyear+'W22;'+currentyear+'W21;'+currentyear+'W20;'+currentyear+'W19;'+currentyear+'W18;'+currentyear+'W17;'+currentyear+'W16;'+currentyear+'W15;'+currentyear+'W14;'+currentyear+'W13;'+currentyear+'W12;'+currentyear+'W11;'+currentyear+'W10;'+currentyear+'W9;'+currentyear+'W8;'+currentyear+'W7;'+currentyear+'W6;'+currentyear+'W5;'+currentyear+'W4;'+currentyear+'W3;'+currentyear+'W2;'+currentyear+'W1;'+lastyear+'W52;'+lastyear+'W51;'+lastyear+'W50;'+lastyear+'W49;'+lastyear+'W48;'+lastyear+'W47;'+lastyear+'W46;'+lastyear+'W45;'+lastyear+'W44;'+lastyear+'W43;'+lastyear+'W42;'+lastyear+'W41;'+lastyear+'W40;'+lastyear+'W39;'+lastyear+'W38;'+lastyear+'W37;'+lastyear+'W36;'+lastyear+'W35;'+lastyear+'W34;'+lastyear+'W33;'+lastyear+'W32;'+lastyear+'W31;'+lastyear+'W30;'+lastyear+'W29;'+lastyear+'W28;'+lastyear+'W27;'+lastyear+'W26;'+lastyear+'W25;'+lastyear+'W24;'+lastyear+'W23;'+lastyear+'W22;'+lastyear+'W21;'+lastyear+'W20;'+lastyear+'W19;'+lastyear+'W18;'+lastyear+'W17;'+lastyear+'W16;'+lastyear+'W15;'+lastyear+'W14;'+lastyear+'W13;'+lastyear+'W12;'+lastyear+'W11;'+lastyear+'W10;'+lastyear+'W9;'+lastyear+'W8;'+lastyear+'W7;'+lastyear+'W6;'+lastyear+'W5;'+lastyear+'W4;'+lastyear+'W3;'+lastyear+'W2;'+lastyear+'W1;'+previousyear+'W52;'+previousyear+'W51;'+previousyear+'W50;'+previousyear+'W49;'+previousyear+'W48;'+previousyear+'W47;'+previousyear+'W46;'+previousyear+'W45;'+previousyear+'W44;'+previousyear+'W43;'+previousyear+'W42;'+previousyear+'W41;'+previousyear+'W40;'+previousyear+'W39;'+previousyear+'W38;'+previousyear+'W37;'+previousyear+'W36;'+previousyear+'W35;'+previousyear+'W34;'+previousyear+'W33;'+previousyear+'W32;'+previousyear+'W31;'+previousyear+'W30;'+previousyear+'W29;'+previousyear+'W28;'+previousyear+'W27;'+previousyear+'W26;'+previousyear+'W25;'+previousyear+'W24;'+previousyear+'W23;'+previousyear+'W22;'+previousyear+'W21;'+previousyear+'W20;'+previousyear+'W19;'+previousyear+'W18;'+previousyear+'W17;'+previousyear+'W16;'+previousyear+'W15;'+previousyear+'W14;'+previousyear+'W13;'+previousyear+'W12;'+previousyear+'W11;'+previousyear+'W10;'+previousyear+'W9;'+previousyear+'W8;'+previousyear+'W7;'+previousyear+'W6;'+previousyear+'W5;'+previousyear+'W4;'+previousyear+'W3;'+previousyear+'W2;'+previousyear+'W1;'+threeyearsback+'W52;'+threeyearsback+'W51;'+threeyearsback+'W50;'+threeyearsback+'W49;'+threeyearsback+'W48;'+threeyearsback+'W47;'+threeyearsback+'W46;'+threeyearsback+'W45;'+threeyearsback+'W44;'+threeyearsback+'W43;'+threeyearsback+'W42;'+threeyearsback+'W41;'+threeyearsback+'W40;'+threeyearsback+'W39;'+threeyearsback+'W38;'+threeyearsback+'W37;'+threeyearsback+'W36;'+threeyearsback+'W35;'+threeyearsback+'W34;'+threeyearsback+'W33;'+threeyearsback+'W32;'+threeyearsback+'W31;'+threeyearsback+'W30;'+threeyearsback+'W29;'+threeyearsback+'W28;'+threeyearsback+'W27;'+threeyearsback+'W26;'+threeyearsback+'W25;'+threeyearsback+'W24;'+threeyearsback+'W23;'+threeyearsback+'W22;'+threeyearsback+'W21;'+threeyearsback+'W20;'+threeyearsback+'W19;'+threeyearsback+'W18;'+threeyearsback+'W17;'+threeyearsback+'W16;'+threeyearsback+'W15;'+threeyearsback+'W14;'+threeyearsback+'W13;'+threeyearsback+'W12;'+threeyearsback+'W11;'+threeyearsback+'W10;'+threeyearsback+'W9;'+threeyearsback+'W8;'+threeyearsback+'W7;'+threeyearsback+'W6;'+threeyearsback+'W5;'+threeyearsback+'W4;'+threeyearsback+'W3;'+threeyearsback+'W2;'+threeyearsback+'W1;'+fouryearsback+'W52;'+fouryearsback+'W51;'+fouryearsback+'W50;'+fouryearsback+'W49;'+fouryearsback+'W48;'+fouryearsback+'W47;'+fouryearsback+'W46;'+fouryearsback+'W45;'+fouryearsback+'W44;'+fouryearsback+'W43;'+fouryearsback+'W42;'+fouryearsback+'W41;'+fouryearsback+'W40;'+fouryearsback+'W39;'+fouryearsback+'W38;'+fouryearsback+'W37;'+fouryearsback+'W36;'+fouryearsback+'W35;'+fouryearsback+'W34;'+fouryearsback+'W33;'+fouryearsback+'W32;'+fouryearsback+'W31;'+fouryearsback+'W30;'+fouryearsback+'W29;'+fouryearsback+'W28;'+fouryearsback+'W27;'+fouryearsback+'W26;'+fouryearsback+'W25;'+fouryearsback+'W24;'+fouryearsback+'W23;'+fouryearsback+'W22;'+fouryearsback+'W21;'+fouryearsback+'W20;'+fouryearsback+'W19;'+fouryearsback+'W18;'+fouryearsback+'W17;'+fouryearsback+'W16;'+fouryearsback+'W15;'+fouryearsback+'W14;'+fouryearsback+'W13;'+fouryearsback+'W12;'+fouryearsback+'W11;'+fouryearsback+'W10;'+fouryearsback+'W9;'+fouryearsback+'W8;'+fouryearsback+'W7;'+fouryearsback+'W6;'+fouryearsback+'W5;'+fouryearsback+'W4;'+fouryearsback+'W3;'+fouryearsback+'W2;'+fouryearsback+'W1&filter=ou:'+ouid+'&displayProperty=NAME&outputIdScheme=UID'
+
+           var rrurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:FhEI5cBJsEv.REPORTING_RATE&dimension=pe:'+currentyear+'W1;'+currentyear+'W2;'+currentyear+'W3;'+currentyear+'W4;'+currentyear+'W5;'+currentyear+'W6;'+currentyear+'W7;'+currentyear+'W8;'+currentyear+'W9;'+currentyear+'W10;'+currentyear+'W11;'+currentyear+'W12;'+currentyear+'W13;'+currentyear+'W14;'+currentyear+'W15;'+currentyear+'W16;'+currentyear+'W17;'+currentyear+'W18;'+currentyear+'W19;'+currentyear+'W20;'+currentyear+'W21;'+currentyear+'W22;'+currentyear+'W23;'+currentyear+'W24;'+currentyear+'W25;'+currentyear+'W26;'+currentyear+'W27;'+currentyear+'W28;'+currentyear+'W29;'+currentyear+'W30;'+currentyear+'W31;'+currentyear+'W32;'+currentyear+'W33;'+currentyear+'W34;'+currentyear+'W35;'+currentyear+'W36;'+currentyear+'W37;'+currentyear+'W38;'+currentyear+'W39;'+currentyear+'W40;'+currentyear+'W41;'+currentyear+'W42;'+currentyear+'W43;'+currentyear+'W44;'+currentyear+'W45;'+currentyear+'W46;'+currentyear+'W47;'+currentyear+'W48;'+currentyear+'W49;'+currentyear+'W50;'+currentyear+'W51;'+currentyear+'W52&filter=ou:'+ouid+'&displayProperty=NAME&outputIdScheme=UID'
+
+        //    console.log(url);
+        //    console.log(rrurl)
+
+            getEPR(url,ouid,rrurl);
+
+            
+			
+            // fetchSOHCompa(url,ounit);
+            // $("#county-dropdown").change(function() 
+            // {
+            //     ounit = $(this).val();
+            //     console.log('county changed')
+            //     var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:gzxF71bqYP8&dimension=pe:'+currentyear+'W52;'+currentyear+'W51;'+currentyear+'W50;'+currentyear+'W49;'+currentyear+'W48;'+currentyear+'W47;'+currentyear+'W46;'+currentyear+'W45;'+currentyear+'W44;'+currentyear+'W43;'+currentyear+'W42;'+currentyear+'W41;'+currentyear+'W40;'+currentyear+'W39;'+currentyear+'W38;'+currentyear+'W37;'+currentyear+'W36;'+currentyear+'W35;'+currentyear+'W34;'+currentyear+'W33;'+currentyear+'W32;'+currentyear+'W31;'+currentyear+'W30;'+currentyear+'W29;'+currentyear+'W28;'+currentyear+'W27;'+currentyear+'W26;'+currentyear+'W25;'+currentyear+'W24;'+currentyear+'W23;'+currentyear+'W22;'+currentyear+'W21;'+currentyear+'W20;'+currentyear+'W19;'+currentyear+'W18;'+currentyear+'W17;'+currentyear+'W16;'+currentyear+'W15;'+currentyear+'W14;'+currentyear+'W13;'+currentyear+'W12;'+currentyear+'W11;'+currentyear+'W10;'+currentyear+'W9;'+currentyear+'W8;'+currentyear+'W7;'+currentyear+'W6;'+currentyear+'W5;'+currentyear+'W4;'+currentyear+'W3;'+currentyear+'W2;'+currentyear+'W1;'+lastyear+'W52;'+lastyear+'W51;'+lastyear+'W50;'+lastyear+'W49;'+lastyear+'W48;'+lastyear+'W47;'+lastyear+'W46;'+lastyear+'W45;'+lastyear+'W44;'+lastyear+'W43;'+lastyear+'W42;'+lastyear+'W41;'+lastyear+'W40;'+lastyear+'W39;'+lastyear+'W38;'+lastyear+'W37;'+lastyear+'W36;'+lastyear+'W35;'+lastyear+'W34;'+lastyear+'W33;'+lastyear+'W32;'+lastyear+'W31;'+lastyear+'W30;'+lastyear+'W29;'+lastyear+'W28;'+lastyear+'W27;'+lastyear+'W26;'+lastyear+'W25;'+lastyear+'W24;'+lastyear+'W23;'+lastyear+'W22;'+lastyear+'W21;'+lastyear+'W20;'+lastyear+'W19;'+lastyear+'W18;'+lastyear+'W17;'+lastyear+'W16;'+lastyear+'W15;'+lastyear+'W14;'+lastyear+'W13;'+lastyear+'W12;'+lastyear+'W11;'+lastyear+'W10;'+lastyear+'W9;'+lastyear+'W8;'+lastyear+'W7;'+lastyear+'W6;'+lastyear+'W5;'+lastyear+'W4;'+lastyear+'W3;'+lastyear+'W2;'+lastyear+'W1;'+previousyear+'W52;'+previousyear+'W51;'+previousyear+'W50;'+previousyear+'W49;'+previousyear+'W48;'+previousyear+'W47;'+previousyear+'W46;'+previousyear+'W45;'+previousyear+'W44;'+previousyear+'W43;'+previousyear+'W42;'+previousyear+'W41;'+previousyear+'W40;'+previousyear+'W39;'+previousyear+'W38;'+previousyear+'W37;'+previousyear+'W36;'+previousyear+'W35;'+previousyear+'W34;'+previousyear+'W33;'+previousyear+'W32;'+previousyear+'W31;'+previousyear+'W30;'+previousyear+'W29;'+previousyear+'W28;'+previousyear+'W27;'+previousyear+'W26;'+previousyear+'W25;'+previousyear+'W24;'+previousyear+'W23;'+previousyear+'W22;'+previousyear+'W21;'+previousyear+'W20;'+previousyear+'W19;'+previousyear+'W18;'+previousyear+'W17;'+previousyear+'W16;'+previousyear+'W15;'+previousyear+'W14;'+previousyear+'W13;'+previousyear+'W12;'+previousyear+'W11;'+previousyear+'W10;'+previousyear+'W9;'+previousyear+'W8;'+previousyear+'W7;'+previousyear+'W6;'+previousyear+'W5;'+previousyear+'W4;'+previousyear+'W3;'+previousyear+'W2;'+previousyear+'W1;'+threeyearsback+'W52;'+threeyearsback+'W51;'+threeyearsback+'W50;'+threeyearsback+'W49;'+threeyearsback+'W48;'+threeyearsback+'W47;'+threeyearsback+'W46;'+threeyearsback+'W45;'+threeyearsback+'W44;'+threeyearsback+'W43;'+threeyearsback+'W42;'+threeyearsback+'W41;'+threeyearsback+'W40;'+threeyearsback+'W39;'+threeyearsback+'W38;'+threeyearsback+'W37;'+threeyearsback+'W36;'+threeyearsback+'W35;'+threeyearsback+'W34;'+threeyearsback+'W33;'+threeyearsback+'W32;'+threeyearsback+'W31;'+threeyearsback+'W30;'+threeyearsback+'W29;'+threeyearsback+'W28;'+threeyearsback+'W27;'+threeyearsback+'W26;'+threeyearsback+'W25;'+threeyearsback+'W24;'+threeyearsback+'W23;'+threeyearsback+'W22;'+threeyearsback+'W21;'+threeyearsback+'W20;'+threeyearsback+'W19;'+threeyearsback+'W18;'+threeyearsback+'W17;'+threeyearsback+'W16;'+threeyearsback+'W15;'+threeyearsback+'W14;'+threeyearsback+'W13;'+threeyearsback+'W12;'+threeyearsback+'W11;'+threeyearsback+'W10;'+threeyearsback+'W9;'+threeyearsback+'W8;'+threeyearsback+'W7;'+threeyearsback+'W6;'+threeyearsback+'W5;'+threeyearsback+'W4;'+threeyearsback+'W3;'+threeyearsback+'W2;'+threeyearsback+'W1&filter=ou:XsRFIn0FhzA&displayProperty=NAME&outputIdScheme=UID'
+            //     getEPR(url);
+                
+            // });
+
+            $("#subcounty-dropdown").change(function() 
+            {
+                ounit = $(this).val();
+                var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:gzxF71bqYP8&dimension=pe:'+currentyear+'W52;'+currentyear+'W51;'+currentyear+'W50;'+currentyear+'W49;'+currentyear+'W48;'+currentyear+'W47;'+currentyear+'W46;'+currentyear+'W45;'+currentyear+'W44;'+currentyear+'W43;'+currentyear+'W42;'+currentyear+'W41;'+currentyear+'W40;'+currentyear+'W39;'+currentyear+'W38;'+currentyear+'W37;'+currentyear+'W36;'+currentyear+'W35;'+currentyear+'W34;'+currentyear+'W33;'+currentyear+'W32;'+currentyear+'W31;'+currentyear+'W30;'+currentyear+'W29;'+currentyear+'W28;'+currentyear+'W27;'+currentyear+'W26;'+currentyear+'W25;'+currentyear+'W24;'+currentyear+'W23;'+currentyear+'W22;'+currentyear+'W21;'+currentyear+'W20;'+currentyear+'W19;'+currentyear+'W18;'+currentyear+'W17;'+currentyear+'W16;'+currentyear+'W15;'+currentyear+'W14;'+currentyear+'W13;'+currentyear+'W12;'+currentyear+'W11;'+currentyear+'W10;'+currentyear+'W9;'+currentyear+'W8;'+currentyear+'W7;'+currentyear+'W6;'+currentyear+'W5;'+currentyear+'W4;'+currentyear+'W3;'+currentyear+'W2;'+currentyear+'W1;'+lastyear+'W52;'+lastyear+'W51;'+lastyear+'W50;'+lastyear+'W49;'+lastyear+'W48;'+lastyear+'W47;'+lastyear+'W46;'+lastyear+'W45;'+lastyear+'W44;'+lastyear+'W43;'+lastyear+'W42;'+lastyear+'W41;'+lastyear+'W40;'+lastyear+'W39;'+lastyear+'W38;'+lastyear+'W37;'+lastyear+'W36;'+lastyear+'W35;'+lastyear+'W34;'+lastyear+'W33;'+lastyear+'W32;'+lastyear+'W31;'+lastyear+'W30;'+lastyear+'W29;'+lastyear+'W28;'+lastyear+'W27;'+lastyear+'W26;'+lastyear+'W25;'+lastyear+'W24;'+lastyear+'W23;'+lastyear+'W22;'+lastyear+'W21;'+lastyear+'W20;'+lastyear+'W19;'+lastyear+'W18;'+lastyear+'W17;'+lastyear+'W16;'+lastyear+'W15;'+lastyear+'W14;'+lastyear+'W13;'+lastyear+'W12;'+lastyear+'W11;'+lastyear+'W10;'+lastyear+'W9;'+lastyear+'W8;'+lastyear+'W7;'+lastyear+'W6;'+lastyear+'W5;'+lastyear+'W4;'+lastyear+'W3;'+lastyear+'W2;'+lastyear+'W1;'+previousyear+'W52;'+previousyear+'W51;'+previousyear+'W50;'+previousyear+'W49;'+previousyear+'W48;'+previousyear+'W47;'+previousyear+'W46;'+previousyear+'W45;'+previousyear+'W44;'+previousyear+'W43;'+previousyear+'W42;'+previousyear+'W41;'+previousyear+'W40;'+previousyear+'W39;'+previousyear+'W38;'+previousyear+'W37;'+previousyear+'W36;'+previousyear+'W35;'+previousyear+'W34;'+previousyear+'W33;'+previousyear+'W32;'+previousyear+'W31;'+previousyear+'W30;'+previousyear+'W29;'+previousyear+'W28;'+previousyear+'W27;'+previousyear+'W26;'+previousyear+'W25;'+previousyear+'W24;'+previousyear+'W23;'+previousyear+'W22;'+previousyear+'W21;'+previousyear+'W20;'+previousyear+'W19;'+previousyear+'W18;'+previousyear+'W17;'+previousyear+'W16;'+previousyear+'W15;'+previousyear+'W14;'+previousyear+'W13;'+previousyear+'W12;'+previousyear+'W11;'+previousyear+'W10;'+previousyear+'W9;'+previousyear+'W8;'+previousyear+'W7;'+previousyear+'W6;'+previousyear+'W5;'+previousyear+'W4;'+previousyear+'W3;'+previousyear+'W2;'+previousyear+'W1;'+threeyearsback+'W52;'+threeyearsback+'W51;'+threeyearsback+'W50;'+threeyearsback+'W49;'+threeyearsback+'W48;'+threeyearsback+'W47;'+threeyearsback+'W46;'+threeyearsback+'W45;'+threeyearsback+'W44;'+threeyearsback+'W43;'+threeyearsback+'W42;'+threeyearsback+'W41;'+threeyearsback+'W40;'+threeyearsback+'W39;'+threeyearsback+'W38;'+threeyearsback+'W37;'+threeyearsback+'W36;'+threeyearsback+'W35;'+threeyearsback+'W34;'+threeyearsback+'W33;'+threeyearsback+'W32;'+threeyearsback+'W31;'+threeyearsback+'W30;'+threeyearsback+'W29;'+threeyearsback+'W28;'+threeyearsback+'W27;'+threeyearsback+'W26;'+threeyearsback+'W25;'+threeyearsback+'W24;'+threeyearsback+'W23;'+threeyearsback+'W22;'+threeyearsback+'W21;'+threeyearsback+'W20;'+threeyearsback+'W19;'+threeyearsback+'W18;'+threeyearsback+'W17;'+threeyearsback+'W16;'+threeyearsback+'W15;'+threeyearsback+'W14;'+threeyearsback+'W13;'+threeyearsback+'W12;'+threeyearsback+'W11;'+threeyearsback+'W10;'+threeyearsback+'W9;'+threeyearsback+'W8;'+threeyearsback+'W7;'+threeyearsback+'W6;'+threeyearsback+'W5;'+threeyearsback+'W4;'+threeyearsback+'W3;'+threeyearsback+'W2;'+threeyearsback+'W1;'+fouryearsback+'W52;'+fouryearsback+'W51;'+fouryearsback+'W50;'+fouryearsback+'W49;'+fouryearsback+'W48;'+fouryearsback+'W47;'+fouryearsback+'W46;'+fouryearsback+'W45;'+fouryearsback+'W44;'+fouryearsback+'W43;'+fouryearsback+'W42;'+fouryearsback+'W41;'+fouryearsback+'W40;'+fouryearsback+'W39;'+fouryearsback+'W38;'+fouryearsback+'W37;'+fouryearsback+'W36;'+fouryearsback+'W35;'+fouryearsback+'W34;'+fouryearsback+'W33;'+fouryearsback+'W32;'+fouryearsback+'W31;'+fouryearsback+'W30;'+fouryearsback+'W29;'+fouryearsback+'W28;'+fouryearsback+'W27;'+fouryearsback+'W26;'+fouryearsback+'W25;'+fouryearsback+'W24;'+fouryearsback+'W23;'+fouryearsback+'W22;'+fouryearsback+'W21;'+fouryearsback+'W20;'+fouryearsback+'W19;'+fouryearsback+'W18;'+fouryearsback+'W17;'+fouryearsback+'W16;'+fouryearsback+'W15;'+fouryearsback+'W14;'+fouryearsback+'W13;'+fouryearsback+'W12;'+fouryearsback+'W11;'+fouryearsback+'W10;'+fouryearsback+'W9;'+fouryearsback+'W8;'+fouryearsback+'W7;'+fouryearsback+'W6;'+fouryearsback+'W5;'+fouryearsback+'W4;'+fouryearsback+'W3;'+fouryearsback+'W2;'+fouryearsback+'W1&filter=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
+
+                var rrurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:FhEI5cBJsEv.REPORTING_RATE&dimension=pe:'+currentyear+'W1;'+currentyear+'W2;'+currentyear+'W3;'+currentyear+'W4;'+currentyear+'W5;'+currentyear+'W6;'+currentyear+'W7;'+currentyear+'W8;'+currentyear+'W9;'+currentyear+'W10;'+currentyear+'W11;'+currentyear+'W12;'+currentyear+'W13;'+currentyear+'W14;'+currentyear+'W15;'+currentyear+'W16;'+currentyear+'W17;'+currentyear+'W18;'+currentyear+'W19;'+currentyear+'W20;'+currentyear+'W21;'+currentyear+'W22;'+currentyear+'W23;'+currentyear+'W24;'+currentyear+'W25;'+currentyear+'W26;'+currentyear+'W27;'+currentyear+'W28;'+currentyear+'W29;'+currentyear+'W30;'+currentyear+'W31;'+currentyear+'W32;'+currentyear+'W33;'+currentyear+'W34;'+currentyear+'W35;'+currentyear+'W36;'+currentyear+'W37;'+currentyear+'W38;'+currentyear+'W39;'+currentyear+'W40;'+currentyear+'W41;'+currentyear+'W42;'+currentyear+'W43;'+currentyear+'W44;'+currentyear+'W45;'+currentyear+'W46;'+currentyear+'W47;'+currentyear+'W48;'+currentyear+'W49;'+currentyear+'W50;'+currentyear+'W51;'+currentyear+'W52&filter=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
+
+                getEPR(url,ounit,rrurl);
+                
+            });
+
+            $("#facility-dropdown").change(function() 
+            {
+                ounit = $(this).val();
+                var url = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:gzxF71bqYP8&dimension=pe:'+currentyear+'W52;'+currentyear+'W51;'+currentyear+'W50;'+currentyear+'W49;'+currentyear+'W48;'+currentyear+'W47;'+currentyear+'W46;'+currentyear+'W45;'+currentyear+'W44;'+currentyear+'W43;'+currentyear+'W42;'+currentyear+'W41;'+currentyear+'W40;'+currentyear+'W39;'+currentyear+'W38;'+currentyear+'W37;'+currentyear+'W36;'+currentyear+'W35;'+currentyear+'W34;'+currentyear+'W33;'+currentyear+'W32;'+currentyear+'W31;'+currentyear+'W30;'+currentyear+'W29;'+currentyear+'W28;'+currentyear+'W27;'+currentyear+'W26;'+currentyear+'W25;'+currentyear+'W24;'+currentyear+'W23;'+currentyear+'W22;'+currentyear+'W21;'+currentyear+'W20;'+currentyear+'W19;'+currentyear+'W18;'+currentyear+'W17;'+currentyear+'W16;'+currentyear+'W15;'+currentyear+'W14;'+currentyear+'W13;'+currentyear+'W12;'+currentyear+'W11;'+currentyear+'W10;'+currentyear+'W9;'+currentyear+'W8;'+currentyear+'W7;'+currentyear+'W6;'+currentyear+'W5;'+currentyear+'W4;'+currentyear+'W3;'+currentyear+'W2;'+currentyear+'W1;'+lastyear+'W52;'+lastyear+'W51;'+lastyear+'W50;'+lastyear+'W49;'+lastyear+'W48;'+lastyear+'W47;'+lastyear+'W46;'+lastyear+'W45;'+lastyear+'W44;'+lastyear+'W43;'+lastyear+'W42;'+lastyear+'W41;'+lastyear+'W40;'+lastyear+'W39;'+lastyear+'W38;'+lastyear+'W37;'+lastyear+'W36;'+lastyear+'W35;'+lastyear+'W34;'+lastyear+'W33;'+lastyear+'W32;'+lastyear+'W31;'+lastyear+'W30;'+lastyear+'W29;'+lastyear+'W28;'+lastyear+'W27;'+lastyear+'W26;'+lastyear+'W25;'+lastyear+'W24;'+lastyear+'W23;'+lastyear+'W22;'+lastyear+'W21;'+lastyear+'W20;'+lastyear+'W19;'+lastyear+'W18;'+lastyear+'W17;'+lastyear+'W16;'+lastyear+'W15;'+lastyear+'W14;'+lastyear+'W13;'+lastyear+'W12;'+lastyear+'W11;'+lastyear+'W10;'+lastyear+'W9;'+lastyear+'W8;'+lastyear+'W7;'+lastyear+'W6;'+lastyear+'W5;'+lastyear+'W4;'+lastyear+'W3;'+lastyear+'W2;'+lastyear+'W1;'+previousyear+'W52;'+previousyear+'W51;'+previousyear+'W50;'+previousyear+'W49;'+previousyear+'W48;'+previousyear+'W47;'+previousyear+'W46;'+previousyear+'W45;'+previousyear+'W44;'+previousyear+'W43;'+previousyear+'W42;'+previousyear+'W41;'+previousyear+'W40;'+previousyear+'W39;'+previousyear+'W38;'+previousyear+'W37;'+previousyear+'W36;'+previousyear+'W35;'+previousyear+'W34;'+previousyear+'W33;'+previousyear+'W32;'+previousyear+'W31;'+previousyear+'W30;'+previousyear+'W29;'+previousyear+'W28;'+previousyear+'W27;'+previousyear+'W26;'+previousyear+'W25;'+previousyear+'W24;'+previousyear+'W23;'+previousyear+'W22;'+previousyear+'W21;'+previousyear+'W20;'+previousyear+'W19;'+previousyear+'W18;'+previousyear+'W17;'+previousyear+'W16;'+previousyear+'W15;'+previousyear+'W14;'+previousyear+'W13;'+previousyear+'W12;'+previousyear+'W11;'+previousyear+'W10;'+previousyear+'W9;'+previousyear+'W8;'+previousyear+'W7;'+previousyear+'W6;'+previousyear+'W5;'+previousyear+'W4;'+previousyear+'W3;'+previousyear+'W2;'+previousyear+'W1;'+threeyearsback+'W52;'+threeyearsback+'W51;'+threeyearsback+'W50;'+threeyearsback+'W49;'+threeyearsback+'W48;'+threeyearsback+'W47;'+threeyearsback+'W46;'+threeyearsback+'W45;'+threeyearsback+'W44;'+threeyearsback+'W43;'+threeyearsback+'W42;'+threeyearsback+'W41;'+threeyearsback+'W40;'+threeyearsback+'W39;'+threeyearsback+'W38;'+threeyearsback+'W37;'+threeyearsback+'W36;'+threeyearsback+'W35;'+threeyearsback+'W34;'+threeyearsback+'W33;'+threeyearsback+'W32;'+threeyearsback+'W31;'+threeyearsback+'W30;'+threeyearsback+'W29;'+threeyearsback+'W28;'+threeyearsback+'W27;'+threeyearsback+'W26;'+threeyearsback+'W25;'+threeyearsback+'W24;'+threeyearsback+'W23;'+threeyearsback+'W22;'+threeyearsback+'W21;'+threeyearsback+'W20;'+threeyearsback+'W19;'+threeyearsback+'W18;'+threeyearsback+'W17;'+threeyearsback+'W16;'+threeyearsback+'W15;'+threeyearsback+'W14;'+threeyearsback+'W13;'+threeyearsback+'W12;'+threeyearsback+'W11;'+threeyearsback+'W10;'+threeyearsback+'W9;'+threeyearsback+'W8;'+threeyearsback+'W7;'+threeyearsback+'W6;'+threeyearsback+'W5;'+threeyearsback+'W4;'+threeyearsback+'W3;'+threeyearsback+'W2;'+threeyearsback+'W1;'+fouryearsback+'W52;'+fouryearsback+'W51;'+fouryearsback+'W50;'+fouryearsback+'W49;'+fouryearsback+'W48;'+fouryearsback+'W47;'+fouryearsback+'W46;'+fouryearsback+'W45;'+fouryearsback+'W44;'+fouryearsback+'W43;'+fouryearsback+'W42;'+fouryearsback+'W41;'+fouryearsback+'W40;'+fouryearsback+'W39;'+fouryearsback+'W38;'+fouryearsback+'W37;'+fouryearsback+'W36;'+fouryearsback+'W35;'+fouryearsback+'W34;'+fouryearsback+'W33;'+fouryearsback+'W32;'+fouryearsback+'W31;'+fouryearsback+'W30;'+fouryearsback+'W29;'+fouryearsback+'W28;'+fouryearsback+'W27;'+fouryearsback+'W26;'+fouryearsback+'W25;'+fouryearsback+'W24;'+fouryearsback+'W23;'+fouryearsback+'W22;'+fouryearsback+'W21;'+fouryearsback+'W20;'+fouryearsback+'W19;'+fouryearsback+'W18;'+fouryearsback+'W17;'+fouryearsback+'W16;'+fouryearsback+'W15;'+fouryearsback+'W14;'+fouryearsback+'W13;'+fouryearsback+'W12;'+fouryearsback+'W11;'+fouryearsback+'W10;'+fouryearsback+'W9;'+fouryearsback+'W8;'+fouryearsback+'W7;'+fouryearsback+'W6;'+fouryearsback+'W5;'+fouryearsback+'W4;'+fouryearsback+'W3;'+fouryearsback+'W2;'+fouryearsback+'W1&filter=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
+
+                var rrurl = 'https://hiskenya.org/api/26/analytics.json?dimension=dx:FhEI5cBJsEv.REPORTING_RATE&dimension=pe:'+currentyear+'W1;'+currentyear+'W2;'+currentyear+'W3;'+currentyear+'W4;'+currentyear+'W5;'+currentyear+'W6;'+currentyear+'W7;'+currentyear+'W8;'+currentyear+'W9;'+currentyear+'W10;'+currentyear+'W11;'+currentyear+'W12;'+currentyear+'W13;'+currentyear+'W14;'+currentyear+'W15;'+currentyear+'W16;'+currentyear+'W17;'+currentyear+'W18;'+currentyear+'W19;'+currentyear+'W20;'+currentyear+'W21;'+currentyear+'W22;'+currentyear+'W23;'+currentyear+'W24;'+currentyear+'W25;'+currentyear+'W26;'+currentyear+'W27;'+currentyear+'W28;'+currentyear+'W29;'+currentyear+'W30;'+currentyear+'W31;'+currentyear+'W32;'+currentyear+'W33;'+currentyear+'W34;'+currentyear+'W35;'+currentyear+'W36;'+currentyear+'W37;'+currentyear+'W38;'+currentyear+'W39;'+currentyear+'W40;'+currentyear+'W41;'+currentyear+'W42;'+currentyear+'W43;'+currentyear+'W44;'+currentyear+'W45;'+currentyear+'W46;'+currentyear+'W47;'+currentyear+'W48;'+currentyear+'W49;'+currentyear+'W50;'+currentyear+'W51;'+currentyear+'W52&filter=ou:'+ounit+'&displayProperty=NAME&outputIdScheme=UID'
+
+                getEPR(url,ounit,rrurl);
+                
+            });
+					
+	});
+ 
+        var todayYear=new Date().getFullYear();
+        function calculateAlertThreshold(y4,y3,y2,y1){
+            var rawData = [y4,y3,y2,y1]
+            var sorted_data
+            sorted_data = rawData.sort((a,b)=>a-b)
+
+            return ((sorted_data[2]+sorted_data[3])/2)         
+            
+
+            
+        }
+function getOrgUnit(uid)
+	{
+		var url = 'https://hiskenya.org/api/organisationUnits/'+uid+'.json?fields=id,name';
+		
+		$.ajax({      
+		  dataType: "json",
+		  url: url, //Relative or absolute path to response.php file      
+		  success: function(data) 
+		  {          
+			  $("h5.sohtitle").html(data['name'])
+		  }
+		});    
+	}
+        function calculateActionTheshold(y4,y3,y2,y1){
+            rawData = [y4,y3,y2,y1]
+            var mean
+            var v1=[]
+            var variance
+            var stdDev
+
+            mean = (y1+y2+y3+y4)/3
+            $.map(rawData, function(value, index) {
+                let d1 = Math.pow(parseFloat(value-mean),2)
+                v1.push(d1)                
+            })
+            variance = (v1[0]+v1[1]+v1[2]+v1[3])/v1.length
+            stdDev = (1.5*Math.sqrt(variance))
+            return mean+stdDev
+
+
+            
+            
+
+        }
+
+ function getEPR(url,ouid,rrurl){
+        let dyear1
+        let dyear2
+        let dyear3
+        let dyear4
+        let dyear5
+        let alert_threshold
+        let action_thershold
+        var dataaa = new Array()
+        var weeks = new Array()
+        var action = new Array()
+        var alert = new Array()
+        var curorg 
+
+		$(document).ready(function()
+        { 
+        $.ajax({
+                type: 'GET',
+                crossDomain: true,
+                url: url,                    
+                success: function (data) {
+                    
+                    
+                var tableData = '';
+                  
+		{
+         
+            // var curpe = data.metaData.items[theperiod].name;
+            getOrgUnit(ouid);
+                for(var i=1;i<=52;i++){
+                    var year4 = $.grep(data.rows, function(data){
+                        if (i === parseInt(data[1].substr(5,))){
+                        return data[1].substr(5,) === i.toString() && parseInt(data[1].substr(0,4)) === todayYear -4
+                        } else{
+                            return null
+                        }
+                    })      
+                    var year3 = $.grep(data.rows, function(data){
+                        if (i === parseInt(data[1].substr(5,))){
+                        return data[1].substr(5,) === i.toString() && parseInt(data[1].substr(0,4)) === todayYear -3
+                        } else{
+                            return null
+                        }      
+                        
+                    })
+                    var year2 = $.grep(data.rows, function(data){
+                        if (i === parseInt(data[1].substr(5,))){
+                        return data[1].substr(5,) === i.toString() && parseInt(data[1].substr(0,4)) === todayYear-2
+                        } else{
+                            return null
+                        }      
+                        
+                    })
+                    var year1 = $.grep(data.rows, function(data){
+                        if (i === parseInt(data[1].substr(5,))){
+                        return data[1].substr(5,) === i.toString() && parseInt(data[1].substr(0,4)) === todayYear -1 
+                        } else{
+                            return null
+                        }      
+                        
+                    })
+                    var year = $.grep(data.rows, function(data){
+                        if (i === parseInt(data[1].substr(5,))){
+                        return data[1].substr(5,) === i.toString() && parseInt(data[1].substr(0,4)) === todayYear
+                        } else{
+                            return null
+                        }      
+                        
+                    })
+
+                    var theorgunit = data.metaData.dimensions.ou[0];
+                    var curorgname = data.metaData.items[theorgunit].name;
+                    curorg = curorgname
+                    
+                    // var curpe = data.metaData.items[theperiod].name;
+                    
+					//$("h4.titlelabel").html('Epidemic Thresholds -- '+curorg);
+                    
+                    tableData += '<tr>';
+
+                    tableData += '<td class="text-right">'+i+'</td>';  
+
+                    if (year4.length > 0){
+                        $.map(year4, function(value, index) {
+                            if (value[2] == 'NaN' ){
+                                dyear4 = 'Not reported'
+                            }else{
+                                dyear4= parseFloat(value[2])
+                            } 
+                        tableData += '<td class="text-right">'+dyear4+'</td>';
+                        })
+
+                    }else{
+                        dyear4 = 0;
+                        tableData += '<td class="text-right">'+dyear4+'</td>';
+                    }
+                    
+                   
+                    if (year3.length > 0){
+                        $.map(year3, function(value, index) {
+                            if (value[2] == 'NaN' ){
+                                dyear3 = 'Not reported'
+                            }else{
+                                dyear3= parseFloat(value[2])
+                            } 
+                        tableData += '<td class="text-right">'+dyear3+'</td>';
+                        })
+
+                    }else{
+                        dyear3 = 0;
+                        tableData += '<td class="text-right">'+dyear3+'</td>';
+                    }
+                      
+                    if (year2.length > 0){
+                        $.map(year2, function(value, index) {
+                            if (value[2] == 'NaN' ){
+                                dyear2 = 'Not reported'
+                            }else{
+                                dyear2= parseFloat(value[2])
+                            }      
+                        tableData += '<td class="text-right">'+dyear2+'</td>';
+                        })
+                    }else{
+                        dyear2 = 0;
+                        tableData += '<td class="text-right">'+dyear2+'</td>';
+                    }
+                    if (year1.length > 0){
+                        $.map(year1, function(value, index) {
+                            if (value[2] == 'NaN' ){
+                                dyear1 = 'Not reported'
+                            }else{
+                                dyear1= parseFloat(value[2])
+                            }      
+                        tableData += '<td class="text-right">'+dyear1+'</td>';
+                        })
+
+                    }else{
+                        dyear1 = 0;
+                        tableData += '<td class="text-right">'+dyear1+'</td>';
+                    }
+                    if (year.length > 0){
+                        $.map(year, function(value, index) {
+                            if (value[0] = 'gzxF71bqYP8'){
+
+                            
+                            if (value[2] == 'NaN' ){
+                                dyear = 'Not reported'
+                            }else{
+                                dyear= parseFloat(value[2])
+                            }  
+                            }                 
+                        dataaa.push(parseFloat(dyear))
+                        tableData += '<td class="text-right">'+dyear+'</td>';
+                        })
+
+                    }else{
+                        dyear = 0;
+                        tableData += '<td class="text-right">'+dyear+'</td>';
+                    }
+                    weeks.push(i)
+                    alert_threshold = parseFloat(calculateAlertThreshold(dyear4,dyear3,dyear2,dyear1).toFixed(0))
+                    action_thershold = parseFloat(calculateActionTheshold(dyear4,dyear3,dyear2,dyear1).toFixed(0))
+                    alert.push(alert_threshold)
+                    action.push(action_thershold)
+                    tableData += '<td class="text-right">'+alert_threshold+'</td>';
+                    tableData += '<td class="text-right">'+action_thershold+'</td>';     
+                    tableData += '</tr>';             
+
+                }  
+                getrrate(rrurl)                
+                  $('#epr_table').removeClass('hidden');
+                    $('.spdata').removeClass('hidden');
+                    $('.loader-sp').addClass('hidden');
+                    $('.loader-sp').css('display','none');
+                    
+                    $('#epr_table').DataTable().destroy();
+                    $("table.spbox tbody").empty();
+                    $("table.spbox tbody").append(tableData);	
+                    //$('#epr_table').DataTable();         
+                    // $('#epr_table').DataTable( {
+                    //     // dom: 'Bfrtip',
+                    //     // buttons: [
+                    //     //     'copy', 'csv', 'excel', 'pdf', 'print'
+                    //     // ],
+                    //     lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                    //     // ordering: false,
+                    //     // orderable: false,
+                    //     // paging: true
+                    // });                                                 
+             
+                error: function drawtable (request, status, error) {
+                    $('.loader-sp').addClass('hidden');
+                    $('#epr_table').addClass('hidden');
+                    //console.log('SP: error fetching json. :- '+error);
+                    $('spdata').addClass('hidden');
+                    $('.sp_status').html('<div class ="alert alert-danger"><strong>'+request.responseJSON.httpStatusCode+': '+request.responseJSON.message+'</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>');
+                }
+        
+                }
+                }})
+			
+		})
+ 
+
+function getrrate(url){
+  
+        $.ajax({
+                type: 'GET',
+                crossDomain: true,
+                url: url,                    
+                success: function (data) {  
+                 var rratedata= []
+                    for(var i=1;i<=52;i++){
+                        var rrdataaa = $.grep(data.rows, function(data){
+                        if (i === parseInt(data[1].substr(5,))){
+                        return data[1].substr(5,) === i.toString()
+                        } else{
+                            return null
+                        }                          
+                    })
+                    if (rrdataaa.length > 0){
+                        let rrdata = rrdataaa[0] 
+                        rratedata.push(parseInt(rrdata[2]))
+                     }else{
+                        let rrdata = 0
+                        rratedata.push(parseInt(rrdata))
+                     } 
+                    }
+                    getEPRVisul(weeks,dataaa,rratedata,alert,action,curorg)
+                }
+            })
+        
+
+};
+
+ }
+
+ function getEPRVisul(i,ydata,rrate,alert,action,orgunit) {
+    var year = parseFloat(new Date().getFullYear()) 
+     Highcharts.setOptions({
+    colors: ['#058DC7', '#ED561B' ,'#50B432','#750D37']
+});
+    
+    Highcharts.chart('eprvisual', {
+    chart: {
+        zoomType: 'xy'
+    },
+    title: {
+        text: 'Epidemic Thresholds -- '+orgunit,
+        align: 'center'
+    },
+    subtitle: {
+        text: 'Source: KHIS',
+        align: 'left'
+    },
+    xAxis: [{
+        title:{
+            text: 'Week of the year'
+        },
+        categories: i,
+        crosshair: true
+    }],
+    yAxis: [{ // Primary yAxis
+        labels: {
+            format: '{value}',
+            style: {
+                color: Highcharts.getOptions().colors[0]
+            }
+        },
+        title: {
+            text: 'Confirmed Malaria Cases',
+            style: {
+                color: Highcharts.getOptions().colors[0]
+            }
+        }
+    },    { // Secondary yAxis
+        gridLineWidth: 0,
+        title: {
+            text: 'Reporting rate',
+            style: {
+                color: Highcharts.getOptions().colors[0]
+            }
+        },
+        labels: {
+            format: '{value} ',
+            style: {
+                color: Highcharts.getOptions().colors[0]
+            }
+        }, opposite: true
+
+    }
+    
+],
+    tooltip: {
+        shared: true
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'left',
+        x: 80,
+        verticalAlign: 'top',
+        y: 55,
+        floating: true,
+        backgroundColor:
+            Highcharts.defaultOptions.legend.backgroundColor || // theme
+            'rgba(255,255,255,0.25)'
+    },
+    series: [{
+        name: year,
+        type: 'column',
+        data: ydata,
+        
+
+    }, {
+        name: 'Action Threshold',
+        type: 'spline',
+        data: action,
+        marker: {
+            enabled: true
+        },        
+        
+
+    }, {
+        name: 'Alert Threshold',
+        type: 'spline',
+        data: alert,
+     
+    },
+    {
+        name: 'Reporting Rate ',
+        type: 'line',
+        yAxis: 1    ,
+        data: rrate,
+     
+    }],
+    responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 500
+            },
+            chartOptions: {
+                legend: {
+                    floating: false,
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom',
+                    x: 0,
+                    y: 0
+                },
+                yAxis: [{
+                    labels: {
+                        align: 'right',
+                        x: 0,
+                        y: -6
+                    },
+                    showLastLabel: false
+                }, {
+                    labels: {
+                        align: 'left',
+                        x: 0,
+                        y: -6
+                    },
+                    showLastLabel: false
+                }, {
+                    visible: false
+                }]
+            }
+        }]
+    }
+});
+}
+
+	</script>
+			
+	
+</body>
+
+</html>

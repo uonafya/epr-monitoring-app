@@ -1,0 +1,22 @@
+{
+    "version": "1.0.0",
+    "name": "EPR Monitoring App",
+    "description": "An App to monitor emergency preparedness data",
+    "launch_path": "html/ltr/epr.html",
+    "appType": "APP",
+    "icons": {
+        "48": "assets/images/logo-icon.png"
+    },
+    "developer": {
+        "name": "HealthIT",
+        "url": "https://healthit.uonbi.ac.ke"
+    },
+    "default_locale": "en",
+    "activities": {
+        "dhis": {
+            "href": "*"            
+        }
+    }
+}
+
+
