@@ -146,8 +146,8 @@
                 </div>
                         <div class="card">
                             <div class="card-body">
-								<h5 class="card-title ttitle sohtitle"></h5>
-                                <div class="sp_status row"></div>
+                                <h5 class="card-title"></h5>
+                                <div class="row"><div class="col-md-12" id="epr_status"></div></div>
                                 <div class="row">
                                     <div class="loader-sp">
                                         <div class="loader loader--style3" title="2">
@@ -166,12 +166,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <div class="row spdata">
+                                <div class="row eprdata">
+                                        <h5 id="ttitle"></h5>
                                     <div class="table-responsive">
-                                        <table id="epr_table" class="table table-condensed slimtable table-bordered spbox hidden">
-                                            <thead></thead>
-                                            <tbody></tbody>
+                                        <table id="epr_table" class="table table-condensed slimtable table-bordered eprbox">
+                                            <thead><tr><th>Period</th></tr></thead>
+                                            <tbody><tr><td>&nbsp;</td></tr></tbody>
                                         </table>
                                     </div>
                                 </div>
@@ -218,7 +218,9 @@
     <!--Menu sidebar -->
     <script src="../../dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
-    <script src="../../dist/js/custom.min.js"></script><script src="../../dist/js/custom.js"></script>
+    <script src="../../dist/js/_utils.js"></script>
+    <script src="../../dist/js/custom.min.js"></script>
+    <script src="../../dist/js/custom.js"></script>
     <!-- this page js -->
     <script src="../../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
     <script src="../../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
@@ -277,8 +279,8 @@
                 dropdown.prop("selectedIndex", 0);
             }
     
-            $.getJSON(
-                "https://hiskenya.org/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false",
+            justFetch(
+                "https://hiskenya.org/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false",{}).then(
                 function (data) {
                     //console.log(data.organisationUnits);
                     $.each(data.organisationUnits, function (key, entry) {
@@ -306,8 +308,8 @@
             //define the constants
     
             // Populate dropdown with list of sub counties
-            $.getJSON(
-                "https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false",
+            justFetch(
+                "https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false",{}).then(
                 function (data) {
                     $.each(data.organisationUnits, function (key, entry) {
                         if (entry.parent.id == ounit) {
@@ -329,10 +331,10 @@
             var lastyear = parseFloat(new Date().getFullYear() - 1);
             var previousyear = parseFloat(new Date().getFullYear() - 2);
             var threeyearsback = parseFloat(new Date().getFullYear() - 3);
-            var ouid = "st4v8xfqgJf"; // default Org unit
+            var ouid = "HfVjCurKxh2" //"st4v8xfqgJf"; // default Org unit
     
             
-            var url = `https://hiskenya.org/api/26/analytics.json?dimension=dx:gzxF71bqYP8&dimension=ou:LEVEL-3;${ouid}&dimension=pe:WEEKS_THIS_YEAR&displayProperty=NAME&outputIdScheme=UID`
+            var url = `https://hiskenya.org/api/26/analytics.json?dimension=dx:gzxF71bqYP8&dimension=ou:LEVEL-3;${ouid}&dimension=pe:LAST_52_WEEKS&displayProperty=NAME&outputIdScheme=UID`
     
             getEPR(url, ouid);
         });
@@ -351,12 +353,8 @@
                 uid +
                 ".json?fields=id,name";
     
-            $.ajax({
-                dataType: "json",
-                url: url, //Relative or absolute path to response.php file
-                success: function (data) {
+            justFetch(url,{}).then( function (data) {
                     $("h5.sohtitle").html(data["name"]);
-                },
             });
         }
         function calculateActionTheshold(y3, y2, y1) {
@@ -377,14 +375,12 @@
         }
     
         function getEPR(url, ouid) {
-
-            console.log('getEPR('+url+', '+ouid+')');
+            // $('#epr_table').addClass('hidden');
+            // $(".epr_status").addClass('hidden')
+            // $('.eprdata').addClass('hidden');
+            $('.loader-sp').removeClass('hidden');
             $(document).ready(function () {
-                $.ajax({
-                    type: "GET",
-                    crossDomain: true,
-                    url: url,
-                    success: function (data) {
+                justFetch(url,{}).then(data=>{
                         var tableData = "";
 
                         $("#epr_table thead").empty();
@@ -395,7 +391,6 @@
                             thead += "<th>"+data.metaData.items[ou].name+"</th>"
                         })
                         thead += "</tr>"
-                        $("#epr_table thead").append(thead);
                         
                         $.each(data.metaData.dimensions.pe, function (pe_inx, pe) { 
                             tableData += "<tr>"
@@ -410,39 +405,49 @@
                         });
                         
                         $("#epr_table").removeClass("hidden");
-                        $(".spdata").removeClass("hidden");
-                        $(".spbox").removeClass("hidden");
+                        $(".eprdata").removeClass("hidden");
                         $(".loader-sp").addClass("hidden");
-                        $(".loader-sp").css("display", "none");
-
-                        $("#epr_table tbody").append(tableData);
                         
-                        $('#epr_table').DataTable();                                                          
-                        $('#epr_table').DataTable().draw();
+                        // if($fn.dataTable.isDataTable('#epr_table')){
+                            // $('#epr_table').DataTable().destroy();
+                            // }
+                            $.fn.dataTable.ext.errMode = 'throw';
+                            $("#epr_table tbody").empty();
+                            $("#epr_table thead").append(thead);
+                            $("#epr_table tbody").append(tableData);                                                         
+                            $('#epr_table').DataTable({
+                                dom: 'Bfrtlip',
+                                "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+                            order: [[6, 'desc']],
+                            buttons: [
+                                'copy', 'csv', 'excel', 'pdf', 'print', 'pageLength'
+                            ],
+                            paging: false
+                        });
+                        // $(".eprbox").removeClass("hidden");
+                        
                         getOrgUnit(ouid);
-
-                    }, error: function drawtable(request, status, error) {
+                        
+                        $('#epr_table').removeClass('hidden')
+                    }).catch((error) =>{
                             $(".loader-sp").addClass("hidden");
-                            $("#epr_table").addClass("hidden");
-                            //console.log('SP: error fetching json. :- '+error);
-                            $("spdata").addClass("hidden");
-                            $(".sp_status").html(
-                                '<div class ="alert alert-danger"><strong>' +
-                                    request.responseJSON.httpStatusCode +
-                                    ": " +
-                                    request.responseJSON.message +
+                            // $("#epr_table").addClass("hidden");
+                            console.log('EPR: error fetching json. :- '+error);
+                            $("eprdata").addClass("hidden");
+                            $(".epr_status").html(
+                                '<div class ="alert alert-danger"><strong>' +error +
                                     '</strong><br/>Failed to load this data. Please <a href="#" class="btn btn-xs btn-primary btn-rounded" onclick="window.location.reload(true)">refresh</a> this page to retry</div>'
                             );
                     }
                       
-                });
+                );
             });
         }
 
 
         $("#county-dropdown").change(function() {
             ounit = $(this).val();
-            getEPR(`https://hiskenya.org/api/26/analytics.json?dimension=dx:gzxF71bqYP8&dimension=ou:LEVEL-3;${ounit}&dimension=pe:WEEKS_THIS_YEAR&displayProperty=NAME&outputIdScheme=UID`,ounit)
+            getEPR(`https://hiskenya.org/api/26/analytics.json?dimension=dx:gzxF71bqYP8&dimension=ou:LEVEL-3;${ounit}&dimension=pe:LAST_52_WEEKS&displayProperty=NAME&outputIdScheme=UID`,ounit)
         })
     </script>
     

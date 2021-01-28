@@ -134,8 +134,7 @@ $(document).ready(function () {
 //get my ou
 function getMyOU() {
     var myou = null;
-    $.getJSON("https://hiskenya.org/api/me.json?paging=false", function (data, textStatus, jqXHR) {
-        // $.getJSON("https://json.link/oXqJ2CQ4c1.json", function (data, textStatus, jqXHR) {
+    justFetch("https://hiskenya.org/api/me.json?paging=false",{}).then( function (data) {
         var my_ous = data.organisationUnits;
         var my_dv_ous = data.dataViewOrganisationUnits;
         var my_ou_0 = my_ous[0].id;
@@ -155,7 +154,6 @@ function addTableExportoptions(tableid) {
     } );
 }
 //get my ou
-console.log("my_ou_0 is: "+getMyOU());
 
 function formatNumber(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
