@@ -1,5 +1,5 @@
 {
-    "version": "1.0.2",
+    "version": "1.0.3",
     "name": "EPR Monitoring App",
     "description": "An App to monitor emergency preparedness data",
     "launch_path": "html/ltr/epr.html",
