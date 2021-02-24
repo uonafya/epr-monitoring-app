@@ -267,3 +267,15 @@
 .text-blue{
   color: #110358;
 }
+
+tr.alert
+{
+	background-color: #ff0000;
+	color: #ffffff;
+}
+
+.table tr.alert td:first-child{
+    font-weight: bold !important;
+    color: #ffffff;
+    font-size: 1.1em;
+  }

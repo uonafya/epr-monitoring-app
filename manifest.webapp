@@ -1,7 +1,7 @@
 {
-    "version": "1.0.3",
-    "name": "EPR Monitoring App",
-    "description": "An App to monitor emergency preparedness data",
+    "version": "1.1.8",
+    "name": "Malaria Epidemic Monitoring App",
+    "description": "An App to monitor Malaria cases and help prevent occurrence of epidemics through prompt response",
     "launch_path": "html/ltr/epr.html",
     "appType": "APP",
     "icons": {
