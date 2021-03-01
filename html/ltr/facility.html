@@ -11,7 +11,7 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
     <title>
-        Home | EPR Dashboard
+        Facility Summary
     </title>
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="../../assets/extra-libs/multicheck/multicheck.css">
@@ -716,6 +716,15 @@ function getOrgUnit(uid)
 			$('#epr_table_fac').DataTable().destroy();
 			$("table.spbox tbody").empty();
 			$("table.spbox tbody").append(tableData);
+			
+			$('#epr_table_fac').DataTable({
+                                dom: 'Bfrtlip',
+                                "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],                            
+                            buttons: [
+                                'copy', 'csv', 'excel', 'pdf', 'print'
+                            ],
+                            paging: false
+                        });
 			                                      
              
                 error: function drawtable (request, status, error) {
