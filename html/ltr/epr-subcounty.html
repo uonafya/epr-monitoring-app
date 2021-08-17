@@ -335,7 +335,7 @@
             var ouid = "HfVjCurKxh2" //"st4v8xfqgJf"; // default Org unit
     
             
-            var url = `https://hiskenya.org/api/26/analytics.json?dimension=dx:Ak6JvvdNbSB&dimension=ou:LEVEL-3;${ouid}&dimension=pe:LAST_52_WEEKS&displayProperty=NAME&outputIdScheme=UID`
+            var url = `https://hiskenya.org/api/analytics.json?dimension=dx:Ak6JvvdNbSB&dimension=ou:LEVEL-3;${ouid}&dimension=pe:LAST_52_WEEKS&displayProperty=NAME&outputIdScheme=UID`
     
             getEPR(url, ouid);
         });
@@ -448,7 +448,8 @@
 
         $("#county-dropdown").change(function() {
             ounit = $(this).val();
-            getEPR(`https://hiskenya.org/api/26/analytics.json?dimension=dx:Ak6JvvdNbSB&dimension=ou:LEVEL-3;${ounit}&dimension=pe:LAST_52_WEEKS&displayProperty=NAME&outputIdScheme=UID`,ounit)
+            getEPR(`https://hiskenya.org/api/analytics.json?dimension=dx:Ak6JvvdNbSB&dimension=ou:LEVEL-3;${ounit}&dimension=pe:LAST_52_WEEKS&displayProperty=NAME&outputIdScheme=UID`,ounit)
+            getEPR(`https://hiskenya.org/api/analytics.json?dimension=dx:Ak6JvvdNbSB&dimension=ou:LEVEL-3;${ounit}&dimension=pe:LAST_52_WEEKS&displayProperty=NAME&outputIdScheme=UID`,ounit)
         })
     </script>
     
