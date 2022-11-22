@@ -1,5 +1,5 @@
 {
-    "version": "1.2.7",
+    "version": "1.2.8",
     "name": "Malaria Epidemic Monitoring App",
     "description": "An App to monitor Malaria cases and help prevent occurrence of epidemics through prompt response",
     "launch_path": "html/ltr/epr.html",
