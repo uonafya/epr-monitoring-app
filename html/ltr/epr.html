@@ -571,7 +571,7 @@ function getOrgUnit(uid)
             var variance
             var stdDev
 
-            mean = (y1+y2+y3+y4)/3
+            mean = (y1+y2+y3+y4)/4
             $.map(rawData, function(value, index) {
                 let d1 = Math.pow(parseFloat(value-mean),2)
                 v1.push(d1)                
