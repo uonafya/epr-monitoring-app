@@ -550,15 +550,44 @@
 	});
  
         var todayYear=new Date().getFullYear();
+
+        function calculateMedian (data) {
+            data.sort((a, b) => a - b); // sort ascending
+
+            let median;
+            let count = data.length;
+            let mid = Math.floor(count / 2);
+            if (count % 2 === 0) { // is even
+                median = (data[mid - 1] + data[mid]) / 2; // average of two middle numbers (using index to access)
+            } else {
+                median = data[mid];
+            }
+            return median;
+        }
+
+        function calculateQuartile3 (data) {
+            data.sort((a, b) => a - b); // sort ascending
+
+            let median;
+            let count = data.length;
+            let mid = Math.floor(count / 2);
+            let upperHalf = data.slice(mid);
+            let q3;
+            if (upperHalf.length % 2 === 0) {
+                q3 = (upperHalf[upperHalf.length / 2 - 1] + upperHalf[upperHalf.length / 2]) / 2;
+            } else {
+                q3 = upperHalf[Math.floor(upperHalf.length / 2)];
+            }
+            return q3;
+        }
+
         function calculateAlertThreshold(y4,y3,y2,y1){
-            var rawData = [y4,y3,y2,y1]
-            var sorted_data
-            sorted_data = rawData.sort((a,b)=>a-b)
+            // var rawData = [y4,y3,y2,y1]
+            // var sorted_data
+            // sorted_data = rawData.sort((a,b)=>a-b)
 
-            return ((sorted_data[2]+sorted_data[3])/2)         
-            
-
-            
+            // return ((sorted_data[2]+sorted_data[3])/2)         
+            return calculateMedian([y4,y3,y2,y1])
         }
 function getOrgUnit(uid)
 	{
@@ -574,25 +603,25 @@ function getOrgUnit(uid)
 		});    
 	}
         function calculateActionTheshold(y4,y3,y2,y1){
-            rawData = [y4,y3,y2,y1]
-            var mean
-            var v1=[]
-            var variance
-            var stdDev
+            // rawData = [y4,y3,y2,y1]
+            // var mean
+            // var v1=[]
+            // var variance
+            // var stdDev
 
-            mean = (y1+y2+y3+y4)/3
-            $.map(rawData, function(value, index) {
-                let d1 = Math.pow(parseFloat(value-mean),2)
-                v1.push(d1)                
-            })
-            variance = (v1[0]+v1[1]+v1[2]+v1[3])/v1.length
-            stdDev = (1.5*Math.sqrt(variance))
-            return mean+stdDev
+            // mean = (y1+y2+y3+y4)/4
+            // $.map(rawData, function(value, index) {
+            //     let d1 = Math.pow(parseFloat(value-mean),2)
+            //     v1.push(d1)                
+            // })
+            // variance = (v1[0]+v1[1]+v1[2]+v1[3])/v1.length
+            // stdDev = (1.5*Math.sqrt(variance))
+            // return mean+stdDev
 
-
+            let median = calculateMedian([y4,y3,y2,y1]);
+            let q3 = calculateQuartile3([y4,y3,y2,y1]);
             
-            
-
+            return median + q3;
         }
 
  function getEPR(url,ouid,rrurl)
