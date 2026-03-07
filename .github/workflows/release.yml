@@ -1,0 +1,44 @@
+name: release
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set release variables
+        id: vars
+        run: |
+          APP_VERSION="$(python3 -c 'import json; print(json.load(open("manifest.webapp"))["version"])')"
+          APP_SLUG="$(python3 -c 'import json,re; n=json.load(open("manifest.webapp"))["name"]; print(re.sub(r"(^-|-$)", "", re.sub(r"[^a-z0-9]+", "-", n.lower())))')"
+          TAG_NAME="v${APP_VERSION}"
+          ZIP_NAME="${APP_SLUG}-${APP_VERSION}.zip"
+
+          echo "tag_name=${TAG_NAME}" >> "$GITHUB_OUTPUT"
+          echo "zip_name=${ZIP_NAME}" >> "$GITHUB_OUTPUT"
+
+      - name: Build DHIS2 app zip
+        run: |
+          zip -r "${{ steps.vars.outputs.zip_name }}" \
+            manifest.webapp \
+            assets \
+            code \
+            d3 \
+            dist \
+            html
+
+      - name: Create or update GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.vars.outputs.tag_name }}
+          files: ${{ steps.vars.outputs.zip_name }}
