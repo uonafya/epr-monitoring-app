@@ -134,7 +134,7 @@ $(document).ready(function () {
 //get my ou
 function getMyOU() {
     var myou = null;
-    justFetch("https://hiskenya.org/api/me.json?paging=false",{}).then( function (data) {
+    justFetch(dhis2ApiUrl('/api/me.json?paging=false'),{}).then( function (data) {
         var my_ous = data.organisationUnits;
         var my_dv_ous = data.dataViewOrganisationUnits;
         var my_ou_0 = my_ous[0].id;

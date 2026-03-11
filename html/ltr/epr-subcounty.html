@@ -57,7 +57,7 @@
                 </div>
                 
                 <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
-                    <ul class="navbar-nav float-right"><li class="nav-item search-box"><a href="https://hiskenya.org/" class="btn btn-default btn-sm">&larr; Back to DHIS</a></li>
+                    <ul class="navbar-nav float-right"><li class="nav-item search-box"><a href="/" class="btn btn-default btn-sm back-to-dhis-link">&larr; Back to DHIS</a></li>
                     </ul>
                 </div>
             </nav>
@@ -207,6 +207,7 @@
     <!-- All Jquery -->
     <!-- ============================================================== -->
     <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../../dist/js/_utils.js"></script>
     <script src="../../dist/js/defaults.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="../../assets/libs/popper.js/dist/umd/popper.min.js"></script>
@@ -219,7 +220,6 @@
     <!--Menu sidebar -->
     <script src="../../dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
-    <script src="../../dist/js/_utils.js"></script>
     <script src="../../dist/js/custom.min.js"></script>
     <script src="../../dist/js/custom.js"></script>
     <!-- this page js -->
@@ -281,7 +281,7 @@
             }
     
             justFetch(
-                "https://hiskenya.org/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false",{}).then(
+                dhis2ApiUrl("/api/organisationUnits.json?filter=level:eq:2&fields=id,name,level&paging=false"),{}).then(
                 function (data) {
                     //console.log(data.organisationUnits);
                     $.each(data.organisationUnits, function (key, entry) {
@@ -310,7 +310,7 @@
     
             // Populate dropdown with list of sub counties
             justFetch(
-                "https://hiskenya.org/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false",{}).then(
+                dhis2ApiUrl("/api/organisationUnits.json?filter=level:eq:3&fields=id,name,level,parent&paging=false"),{}).then(
                 function (data) {
                     $.each(data.organisationUnits, function (key, entry) {
                         if (entry.parent.id == ounit) {
@@ -335,7 +335,7 @@
             var ouid = "HfVjCurKxh2" //"st4v8xfqgJf"; // default Org unit
     
             
-            var url = `https://hiskenya.org/api/analytics.json?dimension=dx:Ak6JvvdNbSB&dimension=ou:LEVEL-3;${ouid}&dimension=pe:LAST_52_WEEKS&displayProperty=NAME&outputIdScheme=UID`
+            var url = dhis2ApiUrl(`/api/analytics.json?dimension=dx:Ak6JvvdNbSB&dimension=ou:LEVEL-3;${ouid}&dimension=pe:LAST_52_WEEKS&displayProperty=NAME&outputIdScheme=UID`)
     
             getEPR(url, ouid);
         });
@@ -349,10 +349,9 @@
             return (sorted_data[1] + sorted_data[2]) / 2;
         }
         function getOrgUnit(uid) {
-            var url =
-                "https://hiskenya.org/api/organisationUnits/" +
-                uid +
-                ".json?fields=id,name";
+            var url = dhis2ApiUrl(
+                "/api/organisationUnits/" + uid + ".json?fields=id,name"
+            );
     
             justFetch(url,{}).then( function (data) {
                     $("h5.sohtitle").html(data["name"]);
@@ -448,8 +447,8 @@
 
         $("#county-dropdown").change(function() {
             ounit = $(this).val();
-            getEPR(`https://hiskenya.org/api/analytics.json?dimension=dx:Ak6JvvdNbSB&dimension=ou:LEVEL-3;${ounit}&dimension=pe:LAST_52_WEEKS&displayProperty=NAME&outputIdScheme=UID`,ounit)
-            getEPR(`https://hiskenya.org/api/analytics.json?dimension=dx:Ak6JvvdNbSB&dimension=ou:LEVEL-3;${ounit}&dimension=pe:LAST_52_WEEKS&displayProperty=NAME&outputIdScheme=UID`,ounit)
+            getEPR(dhis2ApiUrl(`/api/analytics.json?dimension=dx:Ak6JvvdNbSB&dimension=ou:LEVEL-3;${ounit}&dimension=pe:LAST_52_WEEKS&displayProperty=NAME&outputIdScheme=UID`),ounit)
+            getEPR(dhis2ApiUrl(`/api/analytics.json?dimension=dx:Ak6JvvdNbSB&dimension=ou:LEVEL-3;${ounit}&dimension=pe:LAST_52_WEEKS&displayProperty=NAME&outputIdScheme=UID`),ounit)
         })
     </script>
     

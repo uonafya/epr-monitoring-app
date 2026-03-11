@@ -1,7 +1,7 @@
 // fetch mfl codes
 console.log("--------Preloaded MFLcode script---------")
 var mfl_codes_array = [];
-mfl_url = 'https://hiskenya.org/api/organisationUnits.json?fields=id,code&paging=false';
+mfl_url = dhis2ApiUrl('/api/organisationUnits.json?fields=id,code&paging=false');
 //  mfl_url = 'https://json.link/mGdKac1zJw.json';
 getMFLarray(mfl_url);
 
