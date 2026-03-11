@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -15,6 +16,8 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set release variables
         id: vars
@@ -27,7 +30,17 @@ jobs:
           echo "tag_name=${TAG_NAME}" >> "$GITHUB_OUTPUT"
           echo "zip_name=${ZIP_NAME}" >> "$GITHUB_OUTPUT"
 
+      - name: Check whether release tag already exists
+        id: tag_check
+        run: |
+          if git ls-remote --exit-code --tags origin "${{ steps.vars.outputs.tag_name }}" >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Build DHIS2 app zip
+        if: steps.tag_check.outputs.exists == 'false'
         run: |
           zip -r "${{ steps.vars.outputs.zip_name }}" \
             manifest.webapp \
@@ -38,7 +51,12 @@ jobs:
             html
 
       - name: Create or update GitHub release
+        if: steps.tag_check.outputs.exists == 'false'
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.vars.outputs.tag_name }}
           files: ${{ steps.vars.outputs.zip_name }}
+
+      - name: Skip existing release
+        if: steps.tag_check.outputs.exists == 'true'
+        run: echo "Release ${{ steps.vars.outputs.tag_name }} already exists. Bump manifest.webapp version to publish a new release."
