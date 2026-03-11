@@ -2,7 +2,7 @@ function getTrends(the_url, ounit) {
     console.log("the_url: "+the_url);
     var subtitle = '';
 
-    $.getJSON("https://hiskenya.org/api/26/organisationUnits/"+ounit+".json?fields=name", function (data2) 
+    $.getJSON(dhis2ApiUrl('/api/26/organisationUnits/' + ounit + '.json?fields=name'), function (data2) 
     {
             subtitle = data2.name + " &";
             console.log('subtitle: '+subtitle);

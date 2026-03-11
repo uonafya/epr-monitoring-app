@@ -1,6 +1,6 @@
 var arr_valz = [];
 var valid_ous_array = [];
-var valid_url = 'https://hiskenya.org/api/dataSets.json?fields=id,name,organisationUnits[id,name,code,level]&filter=id:ilike:JPaviRmSsJW&paging=false';
+var valid_url = dhis2ApiUrl('/api/dataSets.json?fields=id,name,organisationUnits[id,name,code,level]&filter=id:ilike:JPaviRmSsJW&paging=false');
 // var valid_url = 'https://json.link/3AHToDxczD.json';
 getValidOUs(valid_url);
 
@@ -159,7 +159,7 @@ function fetchFIs(fiurl,orgu,peri)
                     });
 
                     // title fill
-                        var url = 'https://hiskenya.org/api/organisationUnits/'+orgu+'.json?fields=id,name';
+                        var url = dhis2ApiUrl('/api/organisationUnits/' + orgu + '.json?fields=id,name');
                         $.ajax({      
                             dataType: "json",
                             url: url,
@@ -189,7 +189,7 @@ function fetchFIs(fiurl,orgu,peri)
      // fetch mfl codes
 
      var mfl_codes_array = [];
-     mfl_url = 'https://hiskenya.org/api/organisationUnits.json?fields=id,code&paging=false';
+     mfl_url = dhis2ApiUrl('/api/organisationUnits.json?fields=id,code&paging=false');
     //  mfl_url = 'https://json.link/Gr6ECImaDf.json';
      getMFLarray(mfl_url);
 
